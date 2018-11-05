@@ -24,7 +24,7 @@ def app_server():
         client_ip = flask.request.environ.get('HTTP_X_REAL_IP', flask.request.remote_addr)
         timestamp = time.time()
 
-        for timerecord in iter(GameList.items):
+        for timerecord in iter(GameList.items()):
             timediff = timestamp-timerecord
             if timediff > 30:
                 del GameList[timediff]
