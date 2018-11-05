@@ -8,11 +8,11 @@ GameList = {}
 def app_server():
     if flask.request.method == 'GET':
         timestamp = time.time()
-
-        for timerecord in iter(GameList.items()):
-            timediff = float(timestamp)-float(timerecord)
+        
+        for ip, timerecord in iter(GameList.items()):
+            timediff = timestamp-timerecord
             if timediff > 30:
-                del GameList[timediff]
+                del GameList[timerecord]
             else:
                 pass
         for key_ip in GameList.keys():
@@ -31,8 +31,9 @@ def app_server():
             else:
                 pass
         
-        GameList.update({client_ip:time})
-        return 200
+        GameList.update({client_ip:timestamp})
+        content ="Torque3D GameServer 200OK"
+        return content, 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3030)
