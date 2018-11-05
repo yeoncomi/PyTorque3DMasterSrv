@@ -9,7 +9,7 @@ def app_server():
     if flask.request.method == 'GET':
         timestamp = time.time()
 
-        for timerecord in iter(GameList.items):
+        for timerecord in iter(GameList.items()):
             timediff = timestamp-timerecord
             if timediff > 30:
                 del GameList[timediff]
@@ -31,7 +31,7 @@ def app_server():
             else:
                 pass
         
-        GameList[client_ip] = time
+        GameList.update({client_ip:time})
         return 200
 
 if __name__ == '__main__':
