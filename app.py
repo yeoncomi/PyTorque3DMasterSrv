@@ -10,7 +10,7 @@ def app_server():
         timestamp = time.time()
 
         for timerecord in iter(GameList.items()):
-            timediff = timestamp-timerecord
+            timediff = float(timestamp)-float(timerecord)
             if timediff > 30:
                 del GameList[timediff]
             else:
